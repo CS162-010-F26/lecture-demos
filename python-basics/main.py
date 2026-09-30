@@ -1,5 +1,24 @@
 import math
 
+# This is global scope here.
+# This is a global variable
+# You SHOULD NOT use global variables as a communication
+# channel between functions.
+z: int = 0
+
+# In the parentheses, you put parameters
+#    (placeholders for the values the function takes as inputs)
+# After parentheses, you do -> return_type
+#    (the type of the value that replaces the function call)
+def add(x: float, y: float) -> float: # This is the function header
+    # Function body, dictated by indentation
+    z = x + y
+    return z
+    print('hello') # This is dead code
+
+def print_hello() -> None:
+    print('Hello')
+
 def main() -> None:
     # The print function takes in some inputs,
     # converts them into a string, and writes that
@@ -89,6 +108,34 @@ def main() -> None:
     # MyPy doesn't catch the above error, but the program crashes
     # at runtime due to the exception
 
+    # To call a function, you write its name, then parentheses,
+    # then ARGUMENTS in the parentheses
+    two_plus_nine = add(2.0, 9.0)
+    print(two_plus_nine)
+    print(add(2.0, 9.0))
+
+    print_hello()
+
+    # A scope is a region of code in which a symbol is accessible.
+    # A symbol is a named thing. (variables, functions)
+
+    # In Python, there are three kinds of scopes:
+    # 1. Global scope (module scope). Unindented scope.
+    # 2. Function-local scope. This is simply the scope in a function.
+    #       In Python, every function gets its own scope.
+    # 3. Class scope
+
+    # When you define a symbol, the scope in which you defined it
+    # is the scope in which it's accessible
+
+    # Scopes can exist inside other scopes.
+    # In an inner scope, you can define symbols that are already
+    # defined in the outer scope.
+    #z = 3.14 # This is called shadowing
+    #print(z) # This prints 3.14
+    #z = 7.1
+
+    
 
 if __name__ == '__main__':
     main()
