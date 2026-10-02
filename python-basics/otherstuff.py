@@ -79,6 +79,8 @@ def main() -> None:
 
     print('down here')
 
+    # TODO explain range(10) and range(2, 10)
+
 
 
 if __name__ == '__main__':
