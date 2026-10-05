@@ -1,3 +1,20 @@
+# Imports are used to import other code into your module / Python file.
+# import math # Import the math package (whole-package import)
+from math import pow, sqrt, sin as math_sin # individual object / function imports
+
+def sin() -> None:
+    print('Commits one of the deadly sins')
+
+def print_list(the_list: list[str]) -> None:
+    # In a function, if you modify an element within
+    # a list parameter, that does actually modify the element
+    # in the list that was passed as an argument.
+
+    the_list[0] = 'first'
+
+    for elem in the_list:
+        print(elem)
+
 def main() -> None:
     # Python's relational operators:
     # == (equality)
@@ -74,13 +91,78 @@ def main() -> None:
         # if some_complicated_condition:
             # break
 
+    print()
 
-    print(i)
+    # If you pass just one argument to range(), then it's the stop.
+    # In that case, the start is implied to be 0, and the step
+    # is implied to be 1.
+    # [0-9]
+    for i in range(10):
+        print(f'{i+1}. hello')
+
+    # If you pass two arguments to range(), then the first is the
+    # start, the second is the stop, and the step is implied to be 1.
+    # [1-6]
+    for i in range(1, 7):
+        print(f'{i+1}. goodbye')
 
     print('down here')
 
-    # TODO explain range(10) and range(2, 10)
+    # dot operator (.) reaches inside the thing on the left to
+    # grab the thing on the right
+    print(pow(2, 5))
+    print(sqrt(100))
+    print(pow(100, 0.5))
 
+    # A list is an ordered sequence of values.
+    # In Python, a List is a special data type that represents a list.
+    # Technically, in Python, a List can be heterogeneous (more than
+    # one data type). However, Mypy doesn't like that.
+    # Mypy wants our lists to be homogeneous (everything is of the
+    # same type)
+    
+    # To create a list:
+    # my_list = [] # empty list, that's fine
+    my_list = ['hello', 'world', '!', '']
+    
+    # Element: something inside something else
+
+    # To access an element within a list:
+    print(my_list[0]) # First element has an index of 0
+    print(my_list[1]) # Second element has an index of 1
+    # print(my_list[4]) # Raises an IndexError
+    print(my_list[-1]) # This is the last element
+
+    # To get the length of a list: len(my_list)
+    print(len(my_list)) # Prints 4
+
+    # You can iterate over a list. A list is an iterable.
+    for word in my_list:
+        print(word)
+
+    # You can append elements to Lists in Python.
+    # To append means to add to the end.
+    my_list.append('goodbye')
+
+    print(my_list[4]) # Prints goodbye
+
+    # You can concatenate two lists using the + operator
+    # my_list = my_list + ['hello', 'again']
+
+    # You can delete elements from lists in Python
+    del my_list[2]
+
+    # ['hello', 'world', '', 'goodbye']
+
+    # You can insert elements into the middle of a list
+    my_list.insert(1, 'Harry Potter')
+
+    # ['hello', 'Harry Potter', 'world', '', 'goodbye']
+    
+    print_list(my_list)
+
+    print(my_list[0]) # Prints first
+    
 
 
 if __name__ == '__main__':
