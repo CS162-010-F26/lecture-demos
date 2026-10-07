@@ -5,6 +5,9 @@ from math import pow, sqrt, sin as math_sin # individual object / function impor
 def sin() -> None:
     print('Commits one of the deadly sins')
 
+def change_me(x: int) -> None:
+    x = 10
+
 def print_list(the_list: list[str]) -> None:
     # In a function, if you modify an element within
     # a list parameter, that does actually modify the element
@@ -162,7 +165,19 @@ def main() -> None:
     print_list(my_list)
 
     print(my_list[0]) # Prints first
+
+    x = 1
+    change_me(x) # This does NOT change x!!! x is still 1
+
+    # print(int('hello')) # This raises a ValueError. Program will crash.
     
+    # When a program crashes due to an uncaught exception, it automatically
+    # prints a traceback to the terminal.
+
+    my_cool_variable: float = 1
+    my_cool_variable = 3.14
+
+
 
 
 if __name__ == '__main__':
