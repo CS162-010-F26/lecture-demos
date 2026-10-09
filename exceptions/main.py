@@ -1,3 +1,5 @@
+from traceback import print_exc
+
 def c() -> None:
     print(int('hello')) # Raises a ValueError
 
@@ -8,7 +10,11 @@ def c() -> None:
     # ValueError and continues.
 
     # If the answer is no, then the current
-    # function call TERMINATES.
+    # function call TERMINATES, and the exception
+    # propagates down the call stack.
+
+    # Remember: the call stack is the function calls that
+    # are currently happening that led to this point.
 
 def b() -> None:
     c()
@@ -35,17 +41,31 @@ def a() -> int:
     # If the answer is no, then the current
     # function call TERMINATES.
 
+def get_age(name: str) -> int:
+    if name == 'Alex':
+        return 27
+    elif name == 'Roger':
+        return 30
+    else:
+        # We want to communicate that a bad value was passed
+        # to this function
+        raise ValueError(f'Bad value {name} passed to get_age()')
+
+
 def main() -> None:
     try:
         # try body
         x = a() # raising an exception does NOT return a value.
         # so the assignment operator does not execute.
         # so x is not defined.
-    except ValueError: # This except block can catch ANY kind of exception
+    except ValueError as ex: # This except block can catch ANY kind of exception
         # except body (error-handling code)
         print('Error: cannot cast given string value to integer')
-    except IndexError:
+        print(ex) # Prints error message stored within exception
+        # print_exc()
+    except IndexError as ex:
         print('An index error occurred!')
+        print(ex)
 
     # print(x)
 
@@ -57,6 +77,13 @@ def main() -> None:
 
     # As a program is running, if at any point an exception is
     # raised, then the control flow changes.
+
+    print(get_age('Alex'))
+    print(get_age('Roger'))
+    try:
+        print(get_age('Jessica'))
+    except ValueError as my_cool_exception:
+        print(my_cool_exception)
 
     valid_input = False
     while not valid_input:
