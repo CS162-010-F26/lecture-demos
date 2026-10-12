@@ -2,13 +2,28 @@
 import typing
 
 def read_file(the_file: typing.TextIO) -> None:
+    first = True
     for line in the_file:
+        if first:
+            first = False
+            continue # Skips the header row in data.csv
+
         # Good idea: remove the \n from the end of the line variable:
         line = line.strip()
         
         # We can split a string into a list of smaller strings
         # by a token separator using .split()
         tokens = line.split(',')
+
+        last_name = tokens[0]
+        first_name = tokens[1]
+        age_string = tokens[2]
+
+        age = int(age_string)
+
+        print(f'Name: {first_name} {last_name}')
+        print(f'Age: {age}')
+        print()
 
 
 def main() -> None:
@@ -25,15 +40,19 @@ def main() -> None:
     # 'r': reading
     # 'w': writing in truncate mode
     # 'a': writing in append mode
-    with open('data.csv', 'r') as cool_reading_file:
-        # context manager body goes here
-        
-        # cool_reading_file is an Iterable. You can iterate over it
-        # in a for loop.
-        read_file(cool_reading_file)
+    try:
+        with open('data.csv', 'r') as cool_reading_file:
+            # context manager body goes here
+            
+            # cool_reading_file is an Iterable. You can iterate over it
+            # in a for loop.
+            read_file(cool_reading_file)
 
-        # You can only use the file variable (cool_reading_file)
-        # within the context manager body
+            # You can only use the file variable (cool_reading_file)
+            # within the context manager body
+    except FileNotFoundError as my_exception:
+        print('Error: data.csv not found')
+        return
 
     # cool_reading_file technically still exists, but you cannot really
     # use it
