@@ -1,0 +1,132 @@
+from vector3 import Vector3
+
+# In a lot of programming languages, there are such things as
+# private attributes. A private attribute is an attribute that can
+# only be accessed by methods within the class that contains it.
+# Python does not have private attributes, but there's a convention:
+# an attribute starting with _ is meant to be treated as private.
+
+# Private attributes enforce encapsulation.
+
+# There's an idiom in the Python community: "We're all consenting
+# adults here."
+class SensorData:
+    _gps_flight_path: list[Vector3]
+    acceleration: Vector3
+    velocity: Vector3
+    position: Vector3
+
+    def __init__(self) -> None:
+        # Rocket is initially resting on the launch pad, so initialize
+        # _gps_flight_path to contain a single Vector3 object with x, y,
+        # and z all equal to zero.
+        self._gps_flight_path = [Vector3()]
+        self.acceleration = Vector3()
+        self.velocity = Vector3()
+        self.position = Vector3()
+
+    def query_gps(self) -> None:
+        new_position = Vector3()
+
+        # Here, we would somehow retrieve the rocket's current position
+        # from the GPS hardware and update the x/y/z coordinates of
+        # new_position accordingly. Of course, reading from GPS
+        # hardware is beyond the scope of this course, so just use your
+        # imagination here.
+        # ...
+
+        # Append new position to self._gps_flight_path
+        self._gps_flight_path.append(new_position)
+
+    # Encapsulation helps control coupling in that it allows you to
+    # hide design decisions that are brittle, and absorb their coupling
+    # with interfaces that are stable.
+    def query_accelerometer(self) -> None:
+        # Here, we would somehow query the rocket's current
+        # acceleration from the accelerometer and update
+        # self.acceleration accordingly
+        # Use your imagination.
+        # ...
+
+        # Now, update velocity and position accordingly (note: this is
+        # an oversimplification)
+        self.velocity.x += self.acceleration.x
+        self.velocity.y += self.acceleration.y
+        self.velocity.z += self.acceleration.z
+        self.position.x += self.velocity.x
+        self.position.y += self.velocity.y
+        self.position.z += self.velocity.z
+
+    # This is known as a getter. A getter is a method that simply
+    # returns some data (or perhaps a copy of some data) that's stored
+    # within the object that it's called on.
+    def get_acceleration(self) -> Vector3:
+        return self.acceleration
+
+    def get_velocity(self) -> Vector3:
+        return self.velocity
+
+    def get_position(self) -> Vector3:
+        return self.position
+
+class Rocket:
+    # This list of Vector3 objects keeps a record of the rocket's
+    # flight path so far, relative to the launch pad, as sourced from
+    # the rocket's GPS module. The last element
+    # in the list represents the rocket's current location.
+
+    sensor_data: SensorData
+    deployed_parachute: bool
+    
+    def __init__(self) -> None:
+        # Rocket is initially resting on the launch pad, so initialize
+        # _gps_flight_path to contain a single Vector3 object with x, y,
+        # and z all equal to zero.
+        self.sensor_data = SensorData()
+        self.deployed_parachute = False
+
+    def query_sensors(self) -> None:
+        self.sensor_data.query_gps()
+        self.sensor_data.query_acceleration()
+
+    def actuate_fins(self) -> None:
+        # Get rocket's current position
+        current_velocity = self.sensor_data.get_velocity()
+
+        # Here, we would somehow use current_position and
+        # current_velocity to determine how the fins should be actuated
+        # so as to guide the rocket along the target trajectory.
+        # That's beyond the scope of this course, so use your
+        # imagination here as well.
+        # ...
+
+    def deploy_parachute_if_ready(self) -> None:
+        if self.deployed_parachute:
+            # Parachute has already been deployed. Do nothing.
+            return
+
+        # Get rocket's current position
+        current_velocity = self.sensor_data.get_velocity()
+
+        # Let's say the parachute is meant to be deployed at
+        # apogee (peak of trajectory). Let's say the y coordinate
+        # dimension represents elevation. Then we should deploy the
+        # parachute when the y coordinate of current_velocity becomes
+        # non-positive (when the rocket is no longer moving upward)
+        if current_velocity.y <= 0:
+            # Here, we would somehow engage with the hardware to
+            # deploy the parachute. Again, use your imagination.
+            # ...
+
+            self.deployed_parachute = True
+
+     def log_data(self) -> None:
+        # Get rocket's current position
+        current_position = self.sensor_data.get_position()
+        current_velocity = self.sensor_data.get_velocity()
+        current_acceleration = self.sensor_data.get_acceleration()
+
+        # Here, we would somehow send current_position and
+        # current_velocity to the ground receiver for monitoring.
+        # Use your imagination.
+        # ...
