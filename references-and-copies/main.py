@@ -1,3 +1,5 @@
+from copy import deepcopy, copy
+
 class City:
     name: str
 
@@ -36,15 +38,15 @@ def main() -> None:
 
     # Tells y to refer to 5
     y = x
-    print(id(x))
-    print(id(y))
+    #print(id(x))
+    #print(id(y))
 
     # This line of code does NOT change an int from 5 to 6.
     # It changes x, telling it to refer to a new object.
     # It tells x to refer to the object 6, INSTEAD of the object 5.
-    print(id(x))
+    #print(id(x))
     x = 6
-    print(id(x))
+    #print(id(x))
 
     # When I change x and tell it to refer to 6 instead of 5, the
     # interpreter has to create the object 6. This takes up new memory.
@@ -77,15 +79,51 @@ def main() -> None:
     # so this reaches inside that single City object and changes
     # its name to Eugene
     another_city.name = 'Eugene'
+    # print(my_city.name) # Prints Eugene
+
+    another_city = deepcopy(my_city)
+    another_city.name = 'Corvallis' # This does NOT modify my_city.name
+    print(another_city.name) # Prints Corvallis
     print(my_city.name) # Prints Eugene
+
+
 
     another_city = City()
     # Now, another_city and my_city refer to two DIFFERENT
     # city objects. So when we change another_city.name,
     # that does NOT change my_city.name.
     another_city.name = 'Portland'
-    print(my_city.name) # Prints Eugene
+    # print(my_city.name) # Prints Eugene
 
+    
+    # The copy() function creates a shallow copy of the given object.
+    # The deepcopy() function creates a deep copy of the given object.
+
+    # Suppose an object a contains an attribute b, which contains an
+    # attribute c.
+
+    # Suppose you copy a via z = copy(a). z now refers to a shallow copy of
+    # a. What this means: z and a refer to two different objects. However,
+    # z.b refers to the same object as a.b. This is a shallow copy.
+
+    # A consequence is that z.b.c also refers to the same object as a.b.c.
+    # If I modify a.b.c, that will also modify z.b.c.
+    # a.b.c = 'hello', this will modify z.b.c to be 'hello'
+    # However, If I modify a.b, that will NOT modify z.b.
+    # a.b = SomeCoolObject(), that will not modify z.b.
+
+    # A deep copy, on the other hand, is a "full", proper copy.
+    # If I say z = deepcopy(a), this traverses the object graph contained
+    # within a. It copies everything that it finds. z is a proper, deep copy
+    # of a. z and a refer to two different objects, but so do z.b and a.b,
+    # and so do z.b.c and a.b.c
+
+    
+
+    
+
+
+    
 
 
 if __name__ == '__main__':
