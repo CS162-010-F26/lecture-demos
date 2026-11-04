@@ -1,0 +1,28 @@
+Think up an inheritance relationship. Think in terms
+of is-a relationships.
+
+Example: A husky is a dog.
+
+Write two classes to represent that relationship. Use
+inheritance as we did in lecture.
+
+The base class must have at least one attribute. The
+derived class must have at least one attribute. Both
+classes must have a constructor.
+
+It can't be related to dogs.
+
+Take a screenshot and submit to Canvas.
+
+Here's another example:
+
+class Fruit:
+	_color: str
+	def __init__(self, color: str) -> None:
+		self._color = color
+
+class Apple(Fruit):
+	_diameter: float
+	def __init__(self, color: str, diameter: float) -> None:
+		super().__init__(color)
+		self._diameter = diameter
