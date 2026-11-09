@@ -87,7 +87,9 @@ def main() -> None:
 
     # However, it's slower than static binding.
 
-    # In Python, all function calls are always bound dynamically.
+    # In Python, all function calls are always bound dynamically. In many
+    # other languages, you must opt into dynamic binding to get subtype
+    # polymorphism to work.
 
 if __name__ == '__main__':
     main()
