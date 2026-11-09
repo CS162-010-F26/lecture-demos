@@ -1,3 +1,5 @@
+from typing import override
+
 from monster import Monster
 from player import Player
 
@@ -7,6 +9,7 @@ class Vampire(Monster):
     def __init__(self) -> None:
         self._strength = 1
 
+    @override
     def attack_player(self, player: Player) -> None:
         print('Vampire attacks player')
         # The vampire sucks the player's blood, damaging them
