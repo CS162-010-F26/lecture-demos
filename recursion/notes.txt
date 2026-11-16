@@ -1,0 +1,17 @@
+Recursion, is, mathematically, when a function is defined at least partially
+in terms of itself.
+
+f(1) = 0
+f(2) = 1
+f(x) = f(x-1) + f(x-2)
+
+f encodes the fibonacci sequence.
+
+The fibonacci sequence is a sequence of numbers that starts with 0, 1,
+and then every number after that is the sum of the previous two numbers
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+
+
+Programmatically, we often think of recursion as when a function calls itself,
+directly or indirectly.

@@ -1,0 +1,22 @@
+A pair is simply a group of two pieces of data.
+
+A Pair object will be an instance of a class that has two
+fields inside it.
+
+However, Pairs are meant to be very generic
+/ flexible. The two data types
+of those two respective fields should be parameterized, so
+that I can have, for example, a Pair object consisting of an
+integer and a string, or, for example, a Pair object
+consisting of a Pokemon and a Rocket
+
+Your goal is to create a single generic pair class, so that
+when you create pairs, you can specify the types of the two
+fields on the fly.
+
+Do your best. Hint: You'll need TWO generic type
+parameters in your Pair generic class. (separate with commas)
+
+Make sure it has the two fields and at least a constructor.
+
+
