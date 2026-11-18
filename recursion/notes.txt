@@ -15,3 +15,28 @@ and then every number after that is the sum of the previous two numbers
 
 Programmatically, we often think of recursion as when a function calls itself,
 directly or indirectly.
+
+
+
+
+
+
+
+Imagine this problem:
+
+Given a directory, delete it. But first, delete everything inside it.
+But first, if some of the things in the directory are directories, delete the
+stuff inside them.
+
+For all intents and purposes, this problem requires recursion (or simulating
+recursion very carefully with a stack data structure).
+
+Basically:
+
+function rm_recursive(d):
+	for each entry e in the directory d:
+		if e is NOT a directory:
+			delete e
+		else:
+			rm_recursive(e)
+			rmdir(e)
