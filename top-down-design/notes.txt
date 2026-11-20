@@ -1,0 +1,51 @@
+Pseudocode: A hybrid / blend between code and English. It's a series
+of computational steps described in English. Sometimes, it's in the
+form of sentences.
+
+function quadratic_formula_first_root(a, b, c) {
+	compute the determinant = (b^2 - 4ac)
+	compute sqrt_determinant = sqrt(determinant)
+	compute numerator = -b - sqrt_determinant
+	return numerator / (2a)
+}
+
+pseudocode does not have formal syntax requirements. The goal of pseudocode
+is to describe some computational steps without worrying too much
+about the details of syntax. The main problem with the syntax hurdle is that
+if you're still early in the design process, you're inherently going to
+run into design issues that need to be corrected, but correcting those issues
+while sustaining your valid syntax (which you already put a lot of effort
+into) is just extra work.
+
+pseudocode is not the only kind of tool that can be used in software design
+models.
+
+A software design model is a model (representation) of a possible design
+of a software application. There are various formal specifications for
+well known / understood kinds of diagrams (UML diagrams, for example).
+
+
+There are various strategies for constructing software design models
+for big problems. The two major kinds of strategies are
+top-down design, and bottom-up design. Top-down design is usually
+easier for big problems, and / or problems outside your domain of
+expertise.
+
+Top-down design is a form of reverse engineering: you start with an
+idea of the end goal, and work "backward" from there: you take an
+undesigned feature, and you break it down into a couple of smaller
+steps / action items. Repeat until the action items are small enough
+that they seem manageable.
+
+Ideally, as you break components down into smaller components,
+each component that you end up with in your software design model
+will correspond to, say, a function, or some other code component,
+in your actual implementation later on.
+
+You can then begin implementation.
+
+Design: The process of constructing a software design model.
+Implementation: The process of translating a software design model
+	to actual code.
+
+Design is harder than implementation.
