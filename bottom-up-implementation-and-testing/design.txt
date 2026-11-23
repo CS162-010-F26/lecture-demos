@@ -1,0 +1,68 @@
+Problem: Write a function that can compute the difference in days between
+two dates (Date 1 and Date 2).
+
+Leap years make this difficult.
+
+Every four years is a leap year, except for years that are divisible by
+100 but NOT 400.
+
+Different months have different numbers of days in them.
+
+
+
+To design this function using top-down design:
+
+1. Compute the number of days to get from Date 1 to the beginning of the next
+     year after the one that Date 1 is in. 
+2. For each year in between Date 1 and Date 2 (inclusive), figure out how
+     many days are in that year and add it to our running total
+3. Compute the number of days to get from Jan 1 of the year that Date 2 is in,
+     to Date 2 itself
+
+Exception: If Date 1 and Date 2 are in the same year:
+
+1. Compute the number of days between the dates, given that they're in the
+     same year
+
+
+Recognize: If we can compute the difference between two dates that are in
+    the same year, we can solve a lot of these smaller problems.
+
+To compute the difference between two dates (Date 1 and Date 2) that are in
+the same year:
+
+1. Compute the number of days to get from Date 1 to the beginning of the
+     next month after the one that Date 1 is in (subtract # of days in
+     month from the day of the month of Date 1, then add 1 to the result)
+2. For each month in between Date 1 and Date 2 (inclusive), figure out how
+     many days are in that month and add it to our running total
+3. Add the day of the month of Date 2, minus 1, to our running total
+
+
+Another smaller component: Figure out if a year is a leap year.
+
+1. If year is divisible by 100 but not 400:
+	return False
+2. Else if the year is divisible by 4:
+	return True
+3. Else return False
+
+
+
+
+
+We like to design things top-down. However, we often prefer to implement
+things bottom-up.
+
+What's the advantage to implementing bottom-up? The high-level functions
+depend on the low-level ones, so the high-level function will never work
+properly until the low-level ones all, also work properly.
+On the other hand, the low-level functions can theoretically work properly
+independently of the high-level functions, in isolation.
+
+(The low-level functions do not depend on anything).
+
+The fact that the low-level functions work right away, they can also be
+tested right away.
+
+

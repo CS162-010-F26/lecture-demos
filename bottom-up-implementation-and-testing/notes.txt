@@ -1,0 +1,30 @@
+There is a software development strategy known as Test Driven  Development
+(TDD). In Test Driven Development, the idea is to strategize implementation
+around automated testing.
+
+Automated testing is when you write code that tests other code. Automated
+testing is nice because it's sometimes just easier to test something
+automatically than it is to test manually, but more importantly, the tests
+themselves can be kept forever. So they find errors in your initial
+implementation, but also in all future modifications to that implementation
+/ reimplementations.
+
+In TDD, we tend to write tests early and often.
+
+There are different ways of doing TDD, but the most common way of doing
+TDD is via the Red, Green, Refactor cycle:
+
+1. You start by writing a test that will test some feature / behavior
+     of some component that has not yet been written. This test is a goal
+     post. (Red step). Your test is failing at this point.
+2. Implement the behavior of the component that now is being tested, so that
+     the test "passes" (i.e., detects no errors), and so that you don't
+     break existing tests. (Green step). All tests
+     should be passing at this point.
+3. Step back, look at the codebase from a high level, given the modifications
+     to it from step 2, and ask yourself whether there is an opportunity
+     to refactor the codebase. (Refactor step).
+
+Refactor: To rewrite code, but in such a way that you don't modify its
+    behavior / semantics. e.g., to make it more readable, or more scalable,
+    or more performant, or more maintainable.
